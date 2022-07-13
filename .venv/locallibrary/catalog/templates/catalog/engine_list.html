@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Engine List</h1>
+  {% if engine_list %}
+  <ul>
+    {% for engine in engine_list %}
+      <li>
+        <a href="{{ engine.get_absolute_url }}">{{ engine.engine_model }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no books in the library.</p>
+  {% endif %}
+{% endblock %}

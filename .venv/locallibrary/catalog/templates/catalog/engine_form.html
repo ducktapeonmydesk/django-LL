@@ -1,0 +1,37 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+  <h2>Student Form</h2>
+
+  <form method="post" id="engineForm" data-engines-url="{% url 'ajax_load_engines' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+    <a href="{% url 'engine-list' %}">Nevermind</a>
+  </form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    $("#id_engineMfg").change(function () {
+      var url = $("#engineForm").attr("data-engine-url");  
+      var engineMfgId = $(this).val();  
+
+      $.ajax({                      
+        url: url,                    
+        data: {
+          'engineMfg': engineMfgId       
+        },
+        success: function (data) {  
+          $("#id_engine").html(data);  
+        }
+      });
+
+    });
+  </script>
+
+
+{% endblock %}

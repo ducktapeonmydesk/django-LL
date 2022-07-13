@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>All Customer Vehicles</h1>
+
+    {% if vehicle_list %}
+    <ul>
+
+      {% for vehicle in vehicle_list %} 
+      <li>
+        <a href="{% url 'vehicle-detail' vehicle.pk %}">{{vehicle.unit}}</a> ({{ vehicle.vin }}, {{ vehicle.sold_to }}) {% if user.is_staff %}- {{ vehicle.user }}{% endif %} {% if perms.catalog.view_all_vehicles %}- <a href="{% url 'vehicle-update' vehicle.vin %}">Update</a>  {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no vehicles.</p>
+    {% endif %}       
+{% endblock %}

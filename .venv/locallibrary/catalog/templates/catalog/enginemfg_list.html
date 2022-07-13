@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Engine Manufacturers</h1>
+  {% if enginemfg_list %}
+  <ul>
+    {% for enginemfg in enginemfg_list %}
+      <li>
+        <a href="{{ enginemfg.get_absolute_url }}">{{ enginemfg.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Engine Manufacturers.</p>
+  {% endif %}
+{% endblock %}

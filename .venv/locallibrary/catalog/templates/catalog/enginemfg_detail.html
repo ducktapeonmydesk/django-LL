@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ enginemfg.name }}</h1>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Engines</h4>
+    <dl>
+    {% for engine in enginemfg.engine_set.all %}
+    <dt><a href="{{ engine.get_absolute_url }}">{{ engine }}</a>
+    <strong>Service Level:</strong> {{ engine.servicelevel }}
+    <dd>{{ book.summary }}</dd>
+    {% endfor %}
+    </dl>
+  </div>
+{% endblock %}

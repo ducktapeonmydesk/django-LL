@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>All Scheduled Appointments</h1>
+
+    {% if newappt_list %}
+    <ul>
+
+      {% for newappt in newappt_list%} 
+      <li>
+        <a href="">{{newappt.branch}}</a> - {{ newappt.day }} - {{ newappt.begin_time }}, {{ appointment.sold_to }}, {% if user.is_staff %}- {{ appointment.user }}{% endif %} {% if perms.catalog.view_all_vehicles %}- <a href="">Update</a>  {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no scheduled appointments</p>
+    {% endif %}       
+{% endblock %}

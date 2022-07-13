@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ vehicle.unit }} - {{ vehicle.vin }}</h1>
+
+  <p><strong>Customer:</strong> <a href="{{ sold_to.engineMfg.get_absolute_url }}">{{ vehicle.sold_to }}</a></p>
+  <p><strong>Engine Manufacturer:</strong> <a href="{{ vehicle.engineMfg.get_absolute_url }}">{{ vehicle.engineMfg }}</a></p>
+  <p><strong>Engine:</strong> {{ vehicle.engine }}</p>
+  <p><strong>Unit:</strong> {{ vehicle.unit }}</p>
+  <p><strong>VIN:</strong> {{ vehicle.vin }}</p>
+  <p><strong>Mileage:</strong> {{ vehicle.mileage }}</p>
+  <p><strong>Service Level:</strong> {{ vehicle.engine.servicelevel }}</p>
+
+{% endblock %}

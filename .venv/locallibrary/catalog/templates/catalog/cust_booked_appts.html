@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Customer Appointment List</h1>
+
+    {% if newappt_list %}
+    <ul>
+
+      {% for newappt in newappt_list %}
+      <li>
+        <a href="">{{ newappt.branch }}</a> - {{ newappt.day }} - {{ newappt.begin_time }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>You have no appointments scheduled.</p>
+    {% endif %}
+{% endblock %}
