@@ -7,7 +7,7 @@ from django.db.models.fields import CharField
 from django.db.models.query_utils import Q
 from django.urls import reverse
 import uuid # req'd for unique instances of a book
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, User
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from datetime import date, datetime, timedelta
 from django.utils import timezone
 import pandas as pd
@@ -21,9 +21,31 @@ from catalog.utils.static_vars import EMAIL_VERIFY_TOKEN_KEEP_ALIVE_SECONDS
 import redis
 from django.conf import settings
 import datetime as dt
+from .managers import CustomUserManager
 
 
 # Create your models here.
+
+class ApiUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(_('email'), unique=True, max_length=100, blank=False, null=False)
+    name = models.CharField(_('name'), max_length=100, blank=False)
+    phone = models.CharField(_('phone number'), max_length=10, unique=True, blank=False, null=False, validators=[MinLengthValidator(10), is_int.validate])
+    
+    created = models.DateTimeField(auto_now_add=True, auto_created=True)    
+    last_appointment_datetime = models.DateTimeField(null=True)
+    last_appointment_other_user_id = models.IntegerField(null=True)
+
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['name', 'phone']
+
+    objects = CustomUserManager()
+
+    def __str__(self):
+        return self.name
 
 class Branch(models.Model):
     number = models.IntegerField(unique=True,help_text="This is the branch number, such as 1001 for San Antonio")
@@ -75,7 +97,7 @@ class Vehicle(models.Model):
     vin = models.CharField(max_length=17, unique=True, validators=[MinLengthValidator(17)],  help_text="VIN of the vehicle", primary_key=True)
     engine = models.ForeignKey(Engine, on_delete=models.SET_NULL, null=True)
     engineMfg = models.ForeignKey(engineMfg, on_delete=models.SET_NULL, null=True)
-    sold_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    sold_to = models.ForeignKey(ApiUser, on_delete=models.SET_NULL, null=True, blank=True)
     #customer = models.ForeignKey(ApiUser, related_name='vehicle_customer', on_delete=models.CASCADE, blank=False, null=False)
 
     mileage = models.IntegerField(default=0, help_text="Mileage of the vehicle")
@@ -132,7 +154,7 @@ class Appointment(models.Model):
     unit = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True)
     vin = models.CharField(max_length=17)
     date = models.DateField(help_text="MM-DD-YY")
-    sold_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    sold_to = models.ForeignKey(ApiUser, on_delete=models.SET_NULL, null=True)
     timeslots = models.ForeignKey(TimeSlot, on_delete=models.SET_NULL, null=True)
     servicetype = models.ForeignKey(ServiceType, on_delete=models.SET_NULL, null=True)
     servicelevel = models.ForeignKey(ServiceLevel, on_delete=models.SET_NULL, null=True) 
@@ -229,7 +251,7 @@ class NewAppt(models.Model):
     unit = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True)
     vin = models.CharField(max_length=17)
     #vin = models.ForeignKey(Vehicle, related_name='VIN', on_delete=models.SET_NULL, null=True)
-    sold_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    sold_to = models.ForeignKey(ApiUser, on_delete=models.SET_NULL, null=True)
     servicelevel = models.ForeignKey(ServiceLevel, on_delete=models.SET_NULL, null=True)
     servicetype = models.ForeignKey(ServiceType, on_delete=models.SET_NULL, null=True)
     service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True)
@@ -261,7 +283,7 @@ class PastAppt(models.Model):
     branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, null=True)
     unit = models.ForeignKey(Vehicle, on_delete=models.SET_NULL, null=True)
     vin = models.CharField(max_length=17)
-    sold_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    sold_to = models.ForeignKey(ApiUser, on_delete=models.SET_NULL, null=True)
     services = models.CharField(max_length=1000, validators=[int_list_validator], blank=False, null=False) # list of comma separated service id's [1, 2, 6]
 
     def __str__(self):
@@ -269,3 +291,10 @@ class PastAppt(models.Model):
 
     class Meta:
         ordering = ['branch', 'start_time']
+
+
+class EmailVerificationToken(models.Model):
+    email = models.EmailField(blank=False, null=False, unique=True)
+    key = models.CharField(max_length=200, unique=True) # can set default=some_key_gen_method to auto generate the key
+    created = models.DateTimeField(auto_now_add=True)
+    keep_alive_seconds = models.IntegerField(default=EMAIL_VERIFY_TOKEN_KEEP_ALIVE_SECONDS)

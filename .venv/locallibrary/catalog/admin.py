@@ -3,13 +3,20 @@ from django.contrib.admin.helpers import Fieldset
 from django.contrib.auth.models import User
 from django.core.exceptions import ViewDoesNotExist
 from django.contrib.auth.admin import UserAdmin
+
+from .forms import ApiUserChangeForm, ApiUserCreationForm
 #from .forms import ApiUserCreationForm, ApiUserChangeForm
 
 # Register your models here.
 
-from .models import BranchSchedule, Service, engineMfg, ServiceLevel, ServiceType, Engine, Vehicle, Appointment, Branch, NewAppt
+from .models import BranchSchedule, Service, engineMfg, ServiceLevel, ServiceType, Engine, Vehicle, Appointment, Branch, NewAppt, ApiUser
 
 _ = admin.site.register
+
+class CustomUserAdmin(UserAdmin):
+    add_form = ApiUserCreationForm
+    form = ApiUserChangeForm
+    model = ApiUser
 
 
 class VehicleAdmin(admin.ModelAdmin):

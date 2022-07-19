@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 from rest_framework import routers, serializers, viewsets
 from django.contrib.auth.models import User
 from catalog.views import ApptView
+from catalog.models import ApiUser
 #from catalog.models import ApiUser
 
 
@@ -43,14 +44,13 @@ urlpatterns += [
 ]
 
 
-
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
+        model = ApiUser
         fields = ['url', 'username', 'email', 'is_staff']
 
 class UserViewSet(viewsets.ViewSet):
-    queryset = User.objects.all()
+    queryset = ApiUser.objects.all()
     serializer_class = UserSerializer
 
 
