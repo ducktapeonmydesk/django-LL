@@ -1,0 +1,34 @@
+id,engine_model,engineMfg_id,servicelevel_id
+1,Caterpillar® C7 (w/ACERT Technology),1,2
+2,Cummins® 5.9L,2,2
+3,Cummins® ISB,2,2
+4,Cummins® ISC (Pre-2007),2,2
+5,Caterpillar® C9 (w/ACERT Technology),1,3
+6,Cummins® B6.7L,2,3
+7,Cummins® ISC*,2,3
+8,Cummins® ISL,2,3
+9,Cummins® L9,2,3
+10,Caterpillar® 3176,1,4
+11,"Caterpillar® 3406, 3406B, 3406C, 3406E",1,4
+12,"Caterpillar® C10, C12, C13, C15, C16",1,4
+13,"Cummins® ISL-G, Cummins® ISX-G",2,4
+14,Cummins® N14,2,4
+15,Cummins® ISM,2,5
+16,Cummins® ISX*,2,5
+17,Cummins® M11,2,5
+18,Cummins® ISX 12,2,5
+19,Cummins® ISX 15,2,5
+20,Cummins® X12,2,5
+21,Cummins® X15,2,5
+22,Isuzu® NPR (Gas),3,1
+23,Isuzu® NPR HD (Gas),3,1
+24,Isuzu® NQR (Gas),3,1
+25,Isuzu® NRR (Gas),3,1
+26,Isuzu® NPR & NPR HD Diesel,3,2
+27,Isuzu® NQR Diesel,3,2
+28,Isuzu® Reach Diesel,3,2
+29,Isuzu® FTR Diesel,3,3
+30,Isuzu® FVR Diesel,3,3
+31,Isuzu® NPR ECO MAX Diesel,3,3
+32,Isuzu® NPR XD Diesel,3,3
+33,Isuzu® NRR Diesel,3,3

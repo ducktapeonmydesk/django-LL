@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password, check_password
 
-from catalog.models import EmailVerificationToken
+from ..models import EmailVerificationToken
 
 def create_token() -> dict[str, str]:
     acceptable_chars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']

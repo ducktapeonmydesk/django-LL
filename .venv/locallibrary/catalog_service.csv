@@ -1,0 +1,15 @@
+id,name,price,duration,laborop,service_level_id,service_type_id
+2,Quick Lube - Level 1,199,3600000000,PM-QLUB1,2,1
+3,Quick Lube - Level 2,264,3600000000,PM-QLUB2,3,1
+4,Quick Lube - Level 3,335,4320000000,PM-QLUB3,4,1
+5,Quick Lube - Level 4,399,6120000000,PM-QLUB4,5,1
+6,"""A""ù Service - Level G",164,8280000000,PM-ASVCG,1,2
+7,"""A""ù Service - Level 1",299,9360000000,PM-ASVC1,2,2
+8,"""A""ù Service - Level 2",368,9360000000,PM-ASVC2,3,2
+9,"""A""ù Service - Level 3",439,10080000000,PM-ASVC3,4,2
+10,"""A""ù Service - Level 4",499,11880000000,PM-ASVC4,5,2
+11,"""B""ù Service - Level G",199,10800000000,PM-BSVCG,1,3
+12,"""B""ù Service - Level 1",349,12240000000,PM-BSVC1,2,3
+13,"""B""ù Service - Level 2",425,12240000000,PM-BSVC2,3,3
+14,"""B""ù Service - Level 3",499,12960000000,PM-BSVC3,4,3
+15,"""B""ù Service - Level 4",559,13680000000,PM-BSVC4,5,3

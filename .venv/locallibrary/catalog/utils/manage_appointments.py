@@ -1,7 +1,7 @@
 from asgiref.sync import sync_to_async
 from django.utils import timezone
-from catalog.models import NewAppt, PastAppt, HelperSettingsModel, BranchSchedule
-from catalog.serializers import AppointmentSerializer, PastAppointmentSerializer, BranchScheduleSerializer, HelperSettingsSerializer
+from ..models import NewAppt, PastAppt, HelperSettingsModel, BranchSchedule
+from ..serializers import AppointmentSerializer, PastAppointmentSerializer, BranchScheduleSerializer, HelperSettingsSerializer
 
 
 

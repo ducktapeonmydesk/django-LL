@@ -35,9 +35,7 @@ urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
-urlpatterns += [
-    path('', RedirectView.as_view(url='catalog/', permanent=True)),
-]
+
 
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
@@ -59,6 +57,7 @@ router.register(r'users', UserViewSet)
 router.register(r'appts', ApptView, 'appts')
 
 urlpatterns += [
+    path('', include('catalog.urls')),
     path('api/', include(router.urls)),
     path('api-auth', include('rest_framework.urls', namespace='restframework')),
 ]

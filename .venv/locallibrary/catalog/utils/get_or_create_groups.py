@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Group
 
-from catalog.utils.static_vars import GROUPS
-from catalog.utils.create_group_id_object import create_group_id_object
-from catalog.models import ApiUser
+from ..utils.static_vars import GROUPS
+from ..utils.create_group_id_object import create_group_id_object
+from ..models import ApiUser
 
 def get_or_create_groups() -> dict[str, object]:
     output = {}

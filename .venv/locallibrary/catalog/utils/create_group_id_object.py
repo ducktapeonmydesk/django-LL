@@ -1,4 +1,4 @@
-from catalog.serializers import GroupIdsSerializer
+from ..serializers import GroupIdsSerializer
 
 def create_group_id_object(group: object) -> None:
     group_id_object = {'group_name': group.name, 'group_id': group.id}

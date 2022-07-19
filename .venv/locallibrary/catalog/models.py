@@ -12,12 +12,12 @@ from datetime import date, datetime, timedelta
 from django.utils import timezone
 import pandas as pd
 from django.core.validators import MinLengthValidator, int_list_validator
-from catalog.validators import is_int
+from .validators import is_int
 from django.utils.translation import gettext_lazy as _
 from datetime import date
 from django import forms
-from catalog.managers import CustomUserManager
-from catalog.utils.static_vars import EMAIL_VERIFY_TOKEN_KEEP_ALIVE_SECONDS
+from .managers import CustomUserManager
+from .utils.static_vars import EMAIL_VERIFY_TOKEN_KEEP_ALIVE_SECONDS
 import redis
 from django.conf import settings
 import datetime as dt

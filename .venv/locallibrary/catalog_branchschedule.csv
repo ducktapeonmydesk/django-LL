@@ -1,0 +1,4 @@
+branch_id,holidays,monday_first_appt,monday_last_appt,tuesday_first_appt,tuesday_last_appt,wednesday_first_appt,wednesday_last_appt,thursday_first_appt,thursday_last_appt,friday_first_appt,friday_last_appt,saturday_first_appt,saturday_last_appt
+1,2021-12-25,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,08:00:00,14:00:00
+2,2021-12-25,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,00:00:00,00:00:00
+3,2021-12-25,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,07:00:00,17:00:00,08:00:00,12:00:00
